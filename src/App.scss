@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(40, 44, 52);
+}
+
+.App {
+  max-width: 728px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  
+  header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 10px;
+    background-color: rgb(30, 26, 38);
+  }
+
+  h1 {
+    font-weight: 300;
+  }
+
+  .logged-in-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #d7d7d7;
+    font-size: 14px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-block-end: 4px;
+      border-radius: 50%;
+    }
+  }
+
+  section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: rgb(40, 37, 53);
+  }
+
+  main {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 10px;
+    
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgb(30, 30, 36);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb(103, 73, 184);
+    }
+  }
+
+  form {
+    height: 60px;
+    background-color: #3a3a3a;
+    display: flex;
+    font-size: 1.5rem;
+
+    button {
+      background-color: #1aa184;
+      width: 80px;
+    }
+  }
+
+  input {
+    width: 100%;
+    font-size: 1.3rem;
+    background: #3a3a3a;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 0 0.8em;
+  }
+}
+
+button {
+  background-color: #282c34;
+  // border-radius: 4px;
+  border: none;
+  color: white;
+  padding: 0.8em 1.4em;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+.sign-in {
+  color: #757575;
+  background: white;
+  max-width: 400px;
+  border-radius: 1px;
+  margin: 0 auto;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  box-shadow: 0 1px 0 rgba(114, 114, 114, 1);
+}
+
+
+
+
+ul,
+li {
+  text-align: left;
+  list-style: none;
+}
+
+.message {
+  margin: 14px 0;
+  display: flex;
+
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+
+  p {
+    margin: 0 7px;
+    max-width: calc(100% - 120px);
+    overflow-wrap: break-word;
+    padding: 0.5em 1em;
+    border-radius: 12px;
+    color: white;
+  }
+}
+
+
+.sent {
+  flex-direction: row-reverse;
+
+  p {
+    color: white;
+    background: #0b93f6;
+    align-self: flex-end;
+  }
+}
+
+.received p {
+  background: #e5e5ea;
+  color: black;
+}

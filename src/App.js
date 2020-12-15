@@ -1,4 +1,5 @@
-import './App.css';
+import './App.scss';
+import logo from './logo.svg';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -8,6 +9,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import { useState, useRef, useEffect } from 'react';
+
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
@@ -23,26 +25,23 @@ if (!firebase.apps.length) {
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-function App() {
 
+function App() {
   const [user] = useAuthState(auth);
 
   return (
     <div className="App">
       <header className="App-header">
+        {/* <img src={logo} alt=""/> */}
         <h1>Stringify</h1>
-        <>
-          {user && <>
-            <SignOut />
-            <div>
-              {user && <img src={user.photoURL} alt="" />}
-              <br />
-              {user.displayName}
-            </div>
-          </>
-          }
-
+        {user && <>
+          <SignOut />
+          <div className="logged-in-user">
+            {user && <img src={user.photoURL} alt="" />}
+            {user.displayName}
+          </div>
         </>
+        }
       </header>
 
       <section>
@@ -59,7 +58,7 @@ function SignIn() {
   }
 
   return (
-    <button onClick={signInWithGoogle}>Sign in with Google</button>
+    <button onClick={signInWithGoogle} className="sign-in">Sign in with Google</button>
   )
 }
 
@@ -71,7 +70,7 @@ function SignOut() {
 
 function ChatRoom() {
   const messagesRef = firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limitToLast(25);
+  const query = messagesRef.orderBy('createdAt').limitToLast(40);
 
   const [messages] = useCollectionData(query, { idField: 'id' });
 
@@ -81,7 +80,7 @@ function ChatRoom() {
 
   useEffect(() => {
     bottom.current.scrollIntoView();
-  })
+  }, [])
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -99,7 +98,7 @@ function ChatRoom() {
 
     setFormValue('');
 
-    bottom.current.scrollIntoView({ behavior: 'smooth' });
+    bottom.current.scrollIntoView();
   }
 
   return (
@@ -121,7 +120,7 @@ function ChatRoom() {
 function ChatMessage(props) {
   const { text, uid, photoURL } = props.message;
 
-  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'recieved';
+  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
   return (
     <div className={`message ${messageClass}`}>
