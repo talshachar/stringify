@@ -1,5 +1,6 @@
 import './App.scss';
-import logo from './logo.svg';
+import logoSVG from './assets/logo.svg';
+import sendSVG from './assets/icons/send.svg';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -32,15 +33,15 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} alt=""/> */}
+        {/* <img src={logoSVG} alt=""/> */}
         <h1>Stringify</h1>
-        {user && <>
-          <SignOut />
+        {user && [
+          <SignOut />,
           <div className="logged-in-user">
             {user && <img src={user.photoURL} alt="" />}
             {user.displayName}
           </div>
-        </>
+        ]
         }
       </header>
 
@@ -111,7 +112,7 @@ function ChatRoom() {
 
       <form onSubmit={sendMessage}>
         <input type="text" value={formValue} onChange={(e) => setFormValue(e.target.value)} />
-        <button type="sumbit">✈</button>
+        <button type="sumbit"><img src={sendSVG} alt=""/></button>
       </form>
     </>
   )
